@@ -3,8 +3,8 @@
 Make sure git is installed. And create a new user stack.
 Run the following commands as root user. (sudo su)
 
-<code>apt-get install -y git
-groupadd stack
+<code>apt-get install -y git</code>
+<code>groupadd stack
 useradd -g stack -s /bin/bash -d /opt/stack -m stack
 echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers </code>
 
