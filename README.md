@@ -52,7 +52,7 @@ run
     +./stack.sh:kill_spinner:370               '[' '!' -z '' ']'
     +./stack.sh:exit_trap:486                  [[ 1 -ne 0 ]]
     +./stack.sh:exit_trap:487                  echo 'Error on exit'
-    Error on exit
+                                               Error on exit
     +./stack.sh:exit_trap:488                  generate-subunit 1488805641 528 fail
     +./stack.sh:exit_trap:489                  [[ -z /opt/stack/logs ]]
     +./stack.sh:exit_trap:492                  /opt/stack/devstack/tools/worlddump.py -d /opt/stack/logs
