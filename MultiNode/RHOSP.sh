@@ -2,13 +2,14 @@
 mkdir /etc/contrail/
 
 cat > /etc/contrail/openstackrc <<EOF
+#The contents of overcloudrc file
 export OS_NO_CACHE=True
 export OS_CLOUDNAME=overcloud
 export OS_AUTH_URL=http://192.168.11.52:5000/v2.0
 export NOVA_VERSION=1.1
 export COMPUTE_API_VERSION=1.1
 export OS_USERNAME=admin
-export no_proxy=,192.168.11.53,192.168.11.53
+export no_proxy=,192.168.11.52,192.168.11.52
 export OS_PASSWORD=8jNKeRh3jUPa9rFr3TcBdyZxR
 export PYTHONWARNINGS="ignore:Certificate has no, ignore:A true SSLContext object is not available"
 export OS_TENANT_NAME=admin
@@ -36,8 +37,8 @@ openstack-config --set /etc/nova/nova.conf neutron url http://192.168.11.26:9696
 
 openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url http://192.168.11.53:35357/v2.0
 
-
-#openstack endpoint create --region regionOne --publicurl 'http://192.168.11.26:9696' --adminurl 'http://192.168.11.26:9696' --internalurl 'http://192.168.11.26:9696' neutron
+#Just do it for the first controller node. Comment it out for the other nodes
+openstack endpoint create --region regionOne --publicurl 'http://192.168.11.26:9696' --adminurl 'http://192.168.11.26:9696' --internalurl 'http://192.168.11.26:9696' neutron
 
 #mysql -u root  -o keystone -e "delete from endpoint where url='http://192.168.11.52:9696';"
 
@@ -112,4 +113,5 @@ cat $priorities_conf )
 #Install basic packages 
 yum -y install contrail-fabric-utils contrail-setup
 
-#yum install kernel-3.10.0-327.10.1.el7
+yum list --showduplicates kernel
+yum install kernel-3.10.0-327.10.1.el7
